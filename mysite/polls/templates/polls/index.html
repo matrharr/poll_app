@@ -1,13 +1,26 @@
-{%  load staticfiles %}
+<!DOCTYPE html>
+<html>
 
-<link rel="stylesheet" type="text/css" href="{%  static 'polls/style.css' %}" />
+<head>
+  {%  load staticfiles %}
+  <link rel="stylesheet" type="text/css" href="{%  static 'polls/style.css' %}" />
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
+  <script type="text/javascript" src="../static/polls/polls.js"></script>
+
+
+</head>
+<body>
+
 
 {%  if latest_question_list %}
   <ul>
     {%  for question in latest_question_list %}
-      <li><a href="{% url 'polls:detail' question.id %}">{{question.question_text}}</a></li>
+      <li><a class='poll{{ question.id }}'href="{% url 'polls:detail' question.id %}">{{question.question_text}}</a></li>
     {%  endfor %}
   </ul>
   {%  else %}
     <p>No polls are available.</p>
   {%  endif %}
+</body>
+  </html>
